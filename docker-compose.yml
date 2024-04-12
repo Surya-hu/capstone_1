@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  my_service:
+    image: myreactapp
+    ports:
+      - "3000:80"
+    restart: always
