@@ -29,7 +29,7 @@ build_and_push_image() {
     docker push "$registry:latest"  # Pushing the "latest" tag
 }
 
-# Check the current branch and push images accordingly
+# Check the current branch and push images accordingly in prod
 current_branch="main"
 
 if [ "$current_branch" == "$DEV_BRANCH" ]; then
