@@ -2,7 +2,7 @@
 
 # Define Docker Hub credentials
 DOCKER_USERNAME="surya92kumaran"
-DOCKER_PASSWORD="Mail@123@123"
+DOCKER_PASSWORD="U2FsdGVkX1/hcvDU1xLbvW+MPXq5L4Y2OF2NpQv9fZw="
 
 # Define Docker Hub repositories
 DEV_REGISTRY="surya92kumaran/dev_capstone"
