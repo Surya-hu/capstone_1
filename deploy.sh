@@ -30,7 +30,7 @@ build_and_push_image() {
 }
 
 # Check the current branch and push images accordingly in prod
-current_branch="git rev-parse --abbrev-ref HEAD"
+current_branch=$(git rev-parse --abbrev-ref HEAD)
 
 if [ "$current_branch" == "$DEV_BRANCH" ]; then
     authenticate_docker_hub
