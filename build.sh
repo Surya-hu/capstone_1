@@ -10,8 +10,7 @@ IMAGE_NAME="myreactapp"
 docker build -t $IMAGE_NAME .
 
 # Shut down all containers running using Docker Compose
-docker stop $(docker ps -aq)
-docker rm -f $(docker ps -aq)
+docker-compose -f $COMPOSE_FILE down
 
 
 # Bring up containers using Docker Compose
