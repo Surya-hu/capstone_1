@@ -3,5 +3,9 @@ services:
   my_service:
     image: myreactapp
     ports:
+<<<<<<< HEAD
       - "2000:80"
+=======
+      - "2000:80"
+>>>>>>> origin
     restart: always

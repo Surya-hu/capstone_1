@@ -29,8 +29,13 @@ build_and_push_image() {
     docker push "$registry:latest"  # Pushing the "latest" tag
 }
 
+<<<<<<< HEAD
 # Check the current branch and push images accordingly
-current_branch="dev"
+current_branch="git rev-parse --abbrev-ref HEAD"
+=======
+# Check the current branch and push images accordingly in prod
+current_branch="git rev-parse --abbrev-ref HEAD"
+>>>>>>> origin
 
 if [ "$current_branch" == "$DEV_BRANCH" ]; then
     authenticate_docker_hub
