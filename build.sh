@@ -7,8 +7,9 @@ COMPOSE_FILE="docker-compose.yml"
 IMAGE_NAME="myreactapp"
 
 # Shut down all containers running using Docker Compose
+docker-compose down
 docker stop capstone_prod-my_service-1 || true
-docker rmi -f $(docker images -q)
+
 
 # Build the Docker image
 docker build -t $IMAGE_NAME .
@@ -17,6 +18,6 @@ docker build -t $IMAGE_NAME .
 
 
 # Bring up containers using Docker Compose
-#docker-compose down
+
 docker-compose -f $COMPOSE_FILE up -d
 
