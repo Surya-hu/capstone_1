@@ -9,8 +9,8 @@ DEV_REGISTRY="surya92kumaran/dev_capstone"
 PROD_REGISTRY="surya92kumaran/prod_capstone"
 
 # Define the branch names
-DEV_BRANCH="dev"
-MAIN_BRANCH="main"
+#DEV_BRANCH="dev"
+#MAIN_BRANCH="main"
 
 # Function to authenticate with Docker Hub
 authenticate_docker_hub() {
@@ -19,8 +19,8 @@ authenticate_docker_hub() {
 
 # Function to build and push Docker image to the specified registry
 build_and_push_image() {
-    local branch=$1
-    local registry=$2
+    #local branch=$1
+    #local registry=$2
 
     echo "Building and pushing image to $registry"
     docker build -t "$registry:$branch" .
@@ -30,16 +30,16 @@ build_and_push_image() {
 }
 
 # Check the current branch and push images accordingly in prod
-current_branch=$(git rev-parse --abbrev-ref HEAD)
-echo $current_branch
+#current_branch=$(git rev-parse --abbrev-ref HEAD)
+#echo $current_branch
 
-if [ "$current_branch" == "$DEV_BRANCH" ]; then
+if [ $GIT_BRANCH == "dev" ]; then
     authenticate_docker_hub
-    build_and_push_image "$DEV_BRANCH" "$DEV_REGISTRY"
-elif [ "$current_branch" == "$MAIN_BRANCH" ]; then
+    build_and_push_image 
+elif [ $GIT_BRANCH == "main" ]; then
     authenticate_docker_hub
-    build_and_push_image "$MAIN_BRANCH" "$PROD_REGISTRY"
+    build_and_push_image 
 else
-    echo "No action specified for branch $current_branch"
+    echo "No action specified"
 fi
 
