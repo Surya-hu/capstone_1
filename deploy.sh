@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define Docker Hub credentials
-DOCKER_USERNAME="surya92kumaran"
-DOCKER_PASSWORD="dckr_pat_IT1AkkwQv5Cv9FH0Jf3v6SzfzDU"
+#DOCKER_USERNAME="surya92kumaran"
+#DOCKER_PASSWORD="dckr_pat_IT1AkkwQv5Cv9FH0Jf3v6SzfzDU"
 
 # Define Docker Hub repositories
 DEV_REGISTRY="surya92kumaran/dev_capstone"
