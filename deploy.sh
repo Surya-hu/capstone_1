@@ -2,7 +2,7 @@
 
 # Define Docker Hub credentials
 DOCKER_USERNAME="surya92kumaran"
-DOCKER_PASSWORD="U2FsdGVkX1/hcvDU1xLbvW+MPXq5L4Y2OF2NpQv9fZw="
+DOCKER_PASSWORD="dckr_pat_IT1AkkwQv5Cv9FH0Jf3v6SzfzDU"
 
 # Define Docker Hub repositories
 DEV_REGISTRY="surya92kumaran/dev_capstone"
@@ -23,12 +23,17 @@ build_and_push_image() {
     #local registry=$2
 
     echo "Building and pushing image to $registry"
-    docker build -t "$registry:$branch" .
-    docker tag "$registry:$branch" "$registry:latest"  # Tagging the image as "latest"
-    docker push "$registry:$branch"
-    docker push "$registry:latest"  # Pushing the "latest" tag
+    docker build -t $DEV_REGISTRY .
+    docker push $DEV_REGISTRY
 }
+build_and_push_image_prod() {
+    #local branch=$1
+    #local registry=$2
 
+    echo "Building and pushing image to $registry"
+    docker build -t $PROD_REGISTRY .
+    docker push $PROD_REGISTRY
+}
 # Check the current branch and push images accordingly in prod
 #current_branch=$(git rev-parse --abbrev-ref HEAD)
 #echo $current_branch
@@ -38,7 +43,7 @@ if [[ $GIT_BRANCH == "origin/dev" ]]; then
     build_and_push_image 
 elif [[ $GIT_BRANCH == "main" ]]; then
     authenticate_docker_hub
-    build_and_push_image 
+    build_and_push_image_prod
 else
     echo "No action specified"
 fi
