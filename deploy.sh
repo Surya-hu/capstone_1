@@ -33,7 +33,7 @@ build_and_push_image() {
 #current_branch=$(git rev-parse --abbrev-ref HEAD)
 #echo $current_branch
 
-if [[ $GIT_BRANCH == "dev" ]]; then
+if [[ $GIT_BRANCH == "origin/dev" ]]; then
     authenticate_docker_hub
     build_and_push_image 
 elif [[ $GIT_BRANCH == "main" ]]; then
