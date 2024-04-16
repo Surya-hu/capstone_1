@@ -7,7 +7,7 @@ COMPOSE_FILE="docker-compose.yml"
 IMAGE_NAME="myreactapp"
 
 # Shut down all containers running using Docker Compose
-docker-compose down
+#docker-compose down
 docker stop capstone_prod-my_service-1 || true
 
 
