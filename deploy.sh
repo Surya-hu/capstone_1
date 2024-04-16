@@ -28,9 +28,7 @@ build_and_push_image_prod() {
     docker build -t $PROD_REGISTRY .
     docker push $PROD_REGISTRY
 }
-# Check the current branch and push images accordingly in prod
-#current_branch=$(git rev-parse --abbrev-ref HEAD)
-#echo $current_branch
+
 
 if [[ $GIT_BRANCH == "origin/dev" ]]; then
     authenticate_docker_hub
