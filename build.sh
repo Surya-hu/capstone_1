@@ -17,6 +17,6 @@ docker build -t $IMAGE_NAME .
 
 
 # Bring up containers using Docker Compose
-docker-compose down
+#docker-compose down
 docker-compose -f $COMPOSE_FILE up -d
 
