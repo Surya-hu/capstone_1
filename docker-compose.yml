@@ -3,5 +3,5 @@ services:
   my_service:
     image: myreactapp
     ports:
-      - "2000:80"
+      - "80:80"
     restart: always
