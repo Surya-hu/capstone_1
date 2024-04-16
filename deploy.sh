@@ -1,16 +1,10 @@
 #!/bin/bash
 
-# Define Docker Hub credentials
-#DOCKER_USERNAME="surya92kumaran"
-#DOCKER_PASSWORD="dckr_pat_IT1AkkwQv5Cv9FH0Jf3v6SzfzDU"
 
 # Define Docker Hub repositories
 DEV_REGISTRY="surya92kumaran/dev_capstone"
 PROD_REGISTRY="surya92kumaran/prod_capstone"
 
-# Define the branch names
-#DEV_BRANCH="dev"
-#MAIN_BRANCH="main"
 
 # Function to authenticate with Docker Hub
 authenticate_docker_hub() {
@@ -41,7 +35,7 @@ build_and_push_image_prod() {
 if [[ $GIT_BRANCH == "origin/dev" ]]; then
     authenticate_docker_hub
     build_and_push_image 
-elif [[ $GIT_BRANCH == "main" ]]; then
+elif [[ $GIT_BRANCH == "origin/main" ]]; then
     authenticate_docker_hub
     build_and_push_image_prod
 else
