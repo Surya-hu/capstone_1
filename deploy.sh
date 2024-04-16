@@ -1,16 +1,10 @@
 #!/bin/bash
 
-# Define Docker Hub credentials
-DOCKER_USERNAME="surya92kumaran"
-DOCKER_PASSWORD="U2FsdGVkX1/hcvDU1xLbvW+MPXq5L4Y2OF2NpQv9fZw="
 
 # Define Docker Hub repositories
 DEV_REGISTRY="surya92kumaran/dev_capstone"
 PROD_REGISTRY="surya92kumaran/prod_capstone"
 
-# Define the branch names
-DEV_BRANCH="dev"
-MAIN_BRANCH="main"
 
 # Function to authenticate with Docker Hub
 authenticate_docker_hub() {
@@ -19,26 +13,32 @@ authenticate_docker_hub() {
 
 # Function to build and push Docker image to the specified registry
 build_and_push_image() {
-    local branch=$1
-    local registry=$2
+    #local branch=$1
+    #local registry=$2
 
     echo "Building and pushing image to $registry"
-    docker build -t "$registry:$branch" .
-    docker tag "$registry:$branch" "$registry:latest"  # Tagging the image as "latest"
-    docker push "$registry:$branch"
-    docker push "$registry:latest"  # Pushing the "latest" tag
+    docker build -t $DEV_REGISTRY .
+    docker push $DEV_REGISTRY
 }
+build_and_push_image_prod() {
+    #local branch=$1
+    #local registry=$2
 
+    echo "Building and pushing image to $registry"
+    docker build -t $PROD_REGISTRY .
+    docker push $PROD_REGISTRY
+}
 # Check the current branch and push images accordingly in prod
-current_branch=$(git rev-parse --abbrev-ref HEAD)
+#current_branch=$(git rev-parse --abbrev-ref HEAD)
+#echo $current_branch
 
-if [ "$current_branch" == "$DEV_BRANCH" ]; then
+if [[ $GIT_BRANCH == "origin/dev" ]]; then
     authenticate_docker_hub
-    build_and_push_image "$DEV_BRANCH" "$DEV_REGISTRY"
-elif [ "$current_branch" == "$MAIN_BRANCH" ]; then
+    build_and_push_image 
+elif [[ $GIT_BRANCH == "origin/main" ]]; then
     authenticate_docker_hub
-    build_and_push_image "$MAIN_BRANCH" "$PROD_REGISTRY"
+    build_and_push_image_prod
 else
-    echo "No action specified for branch $current_branch"
+    echo "No action specified"
 fi
 
